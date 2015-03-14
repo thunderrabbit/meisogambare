@@ -4,11 +4,17 @@
 
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
-	<script src="bower_components/flipclock/compiled/flipclock.js"></script>		
+	<script src="bower_components/flipclock/compiled/flipclock.js"></script>
+	<style type="text/css">
+	.body {background-color: rgb(35,35,35);}
+	.clock {  width: 300px; margin: 200px auto;}
+	</style>
 </head>
-<body>
-	<div class="clock" style="margin:2em;"></div>
-	<div class="message"></div>
+<body class="body">
+	<div class="clock-wrapper">
+		<div class="clock"></div>
+		<div class="message"></div>
+	</div>
 
 	<script type="text/javascript">
 	var clock;
