@@ -22,3 +22,8 @@ And super gigantic thanks to [/r/BitTippers](http://www.reddit.com/r/BitTippers/
 
 瞑想頑張れ is made of two Japanese words: 瞑想 "Meiso" meaning meditation, and 頑張れ "gambare" meaning "do one's best".
 
+##Versions
+
+[sentimental version](http://sentimentalversioning.org/) history:
+
+14 March 2015: v.Good enough to show people
