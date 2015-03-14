@@ -2,33 +2,80 @@
 <head>
 	<link rel="stylesheet" href="bower_components/flipclock/compiled/flipclock.css">
 
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.js"></script>
 
 	<script src="bower_components/flipclock/compiled/flipclock.js"></script>
 	<style type="text/css">
-	.body {background-color: rgb(35,35,35);}
+	.body {background-color: #232323;}
 	.clock {  width: 300px; margin: 200px auto;}
 	label { color:rgb(100,100,100);}
+	.hidden { display:none;}
 	</style>
 </head>
 <body class="body">
 	<div class="duration-field-wrapper">
 		<label for="countdown_minutes">Countdown minutes</label>
-		<input type="text" id="countdown_minutes" value="5" />
+		<input type="text" id="countdown_minutes" value="0.05" />
 	</div>
 	<div class="clock-wrapper">
 		<div class="clock"></div>
 		<div class="message"></div>
 		<button class="start">Start Clock</button>
+		<button class="stop hidden">Stop Clock</button>
+	</div>
+	<div class="share hidden">
+		<a href="http://twitter.com">twitter</a>
 	</div>
 	<audio id="audio-bell" src="assets/124742__tec-studios__mono-bell-11-d-18sec.wav" preload="auto"></audio>
 	<script type="text/javascript">
 	var clock;
+	var reveal_duration = 2000;
+	var hide_duration = 2000;
+	var successBGColor = "#0B6138";
+	var countingColor = "#232323";
+	var reachedGoalTime = false;
+
+	var clickedStartButton = function(e) {
+		reachedGoalTime = false;
+		changePageColor(countingColor);
+		clock.setTime($('#countdown_minutes').val() * 60);
+		clock.setCountdown(true);
+		clock.start();
+		hideStuffs();
+	}
+
+	var clickedStopButton = function(e) {
+		clock.stop();
+		revealStuffs();
+	}
 
 	var hideStuffs = function() {
-		var hide_duration = 2000;
 		$('.start').hide(hide_duration);
 		$('.duration-field-wrapper').hide(hide_duration);
+		$('.share').hide(reveal_duration);
+	}
+
+	var revealStopButton = function() {
+		$('.stop').show(reveal_duration);
+	}
+
+	var countDownFinished = function() {
+		document.getElementById("audio-bell").play();
+		revealStopButton();
+		changePageColor(successBGColor);
+	}
+
+	var revealStuffs = function() {
+		$('.stop').hide(reveal_duration);
+		$('.share').show(reveal_duration);
+		$('.start').show(hide_duration);
+		$('.duration-field-wrapper').show(hide_duration);
+
+	}
+
+	var changePageColor = function(newColor) {
+		$('.body').animate({backgroundColor:newColor},1000);
 	}
 
 	$(document).ready(function() {
@@ -37,19 +84,21 @@
 			countdown: true,
 			autoStart: false,
 			callbacks: {
-				stop: function() {
-					clock.setCountdown(false);
-					document.getElementById("audio-bell").play();
-					clock.start();
+				interval: function() {
+					if(clock.getTime().time == 0 && !reachedGoalTime) {
+						reachedGoalTime = true;
+						clock.setCountdown(false);
+						clock.start();
+						countDownFinished();
+					}
 				}
 			}
 		});
 		clock.setTime($('#countdown_minutes').val() * 60);
-		$('.start').click(function(e) {
-			clock.setTime($('#countdown_minutes').val() * 60);
-			clock.start();
-			hideStuffs();
-		});
+
+		$('.start').click(clickedStartButton);
+
+		$('.stop').click(clickedStopButton)
 	});
 	</script>
 </body>
