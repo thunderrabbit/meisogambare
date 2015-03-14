@@ -25,6 +25,12 @@
 	<script type="text/javascript">
 	var clock;
 
+	var hideStuffs = function() {
+		var hide_duration = 2000;
+		$('.start').hide(hide_duration);
+		$('.duration-field-wrapper').hide(hide_duration);
+	}
+
 	$(document).ready(function() {
 		clock = $('.clock').FlipClock({
 			clockFace: 'MinuteCounter',
@@ -42,6 +48,7 @@
 		$('.start').click(function(e) {
 			clock.setTime($('#countdown_minutes').val() * 60);
 			clock.start();
+			hideStuffs();
 		});
 	});
 	</script>
