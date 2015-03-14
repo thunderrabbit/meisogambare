@@ -8,9 +8,14 @@
 	<style type="text/css">
 	.body {background-color: rgb(35,35,35);}
 	.clock {  width: 300px; margin: 200px auto;}
+	label { color:rgb(100,100,100);}
 	</style>
 </head>
 <body class="body">
+	<div class="duration-field-wrapper">
+		<label for="countdown_minutes">Countdown minutes</label>
+		<input type="text" id="countdown_minutes" value="5" />
+	</div>
 	<div class="clock-wrapper">
 		<div class="clock"></div>
 		<div class="message"></div>
@@ -21,7 +26,7 @@
 	var clock;
 
 	$(document).ready(function() {
-		clock = $('.clock').FlipClock(300,{
+		clock = $('.clock').FlipClock({
 			clockFace: 'MinuteCounter',
 			countdown: true,
 			autoStart: false,
@@ -33,7 +38,9 @@
 				}
 			}
 		});
+		clock.setTime($('#countdown_minutes').val() * 60);
 		$('.start').click(function(e) {
+			clock.setTime($('#countdown_minutes').val() * 60);
 			clock.start();
 		});
 	});
