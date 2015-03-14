@@ -16,7 +16,7 @@
 <body class="body">
 	<div class="duration-field-wrapper">
 		<label for="countdown_minutes">Countdown minutes</label>
-		<input type="text" id="countdown_minutes" value="0.05" />
+		<input type="text" id="countdown_minutes" value="5" />
 	</div>
 	<div class="clock-wrapper">
 		<div class="clock"></div>
@@ -25,7 +25,8 @@
 		<button class="stop hidden">Stop Clock</button>
 	</div>
 	<div class="share hidden">
-		<a href="http://twitter.com">twitter</a>
+		<input id="share_success_string" type="hidden" />
+		<a id="twitter_link" href="http://twitter.com/">twitter</a>
 	</div>
 	<audio id="audio-bell" src="assets/124742__tec-studios__mono-bell-11-d-18sec.wav" preload="auto"></audio>
 	<script type="text/javascript">
@@ -47,6 +48,7 @@
 
 	var clickedStopButton = function(e) {
 		clock.stop();
+		setSuccessString();
 		revealStuffs();
 	}
 
@@ -74,8 +76,25 @@
 
 	}
 
+	var setSuccessString = function() {
+		var intialMinutes = $('#countdown_minutes').val();
+		var extraSeconds = clock.getTime().time;
+		var extraMinutes = Math.floor(extraSeconds / 60);
+		var successString;
+
+		if(extraMinutes) {
+			successString = "I meditated for " + intialMinutes + " minutes and " + extraMinutes + " bonus minutes!";
+		} else {
+			successString = "I meditated for " + intialMinutes + " minutes!";
+		}
+		// putting string here just for convenience
+		// we could unhide this field or send its value to anything we like
+		$("#share_success_string").val(successString);
+		$("#twitter_link").attr("href","http://twitter.com/share/?text=" + successString);
+	}
+
 	var changePageColor = function(newColor) {
-		$('.body').animate({backgroundColor:newColor},1000);
+		$('.body').css({backgroundColor:newColor},1000);
 	}
 
 	$(document).ready(function() {
