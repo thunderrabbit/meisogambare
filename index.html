@@ -14,6 +14,7 @@
 	<div class="clock-wrapper">
 		<div class="clock"></div>
 		<div class="message"></div>
+		<button class="start">Start Clock</button>
 	</div>
 
 	<script type="text/javascript">
@@ -23,12 +24,16 @@
 		clock = $('.clock').FlipClock(300,{
 			clockFace: 'MinuteCounter',
 			countdown: true,
+			autoStart: false,
 			callbacks: {
 				stop: function() {
 					clock.setCountdown(false);
 					clock.start();
 				}
 			}
+		});
+		$('.start').click(function(e) {
+			clock.start();
 		});
 	});
 	</script>
