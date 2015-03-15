@@ -1,0 +1,9 @@
+.clock {
+	width: 300px; margin: 200px auto;
+}
+label {
+	color:rgb(100,100,100);
+}
+.hidden {
+	display:none;
+}
