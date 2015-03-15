@@ -1,13 +1,11 @@
 var clock;
-
-var meisoPrefs = MeisoPreferences();
-
-var reveal_duration = 2000;
-var hide_duration = 2000;
-var successBGColor = "#0B6138";
-var countingColor = "#232323";
 var reachedGoalTime = false;
 
+var meisoPrefs = MeisoPreferences();
+var reveal_duration = meisoPrefs.getRevealDuration();
+var hide_duration = meisoPrefs.getHideDuration();
+var successBGColor = meisoPrefs.getSuccessBGColor();
+var countingColor = meisoPrefs.getCountingColor();
 
 var clickedStartButton = function(e) {
 	reachedGoalTime = false;
