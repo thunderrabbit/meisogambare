@@ -22,5 +22,5 @@ And super gigantic thanks to [/r/BitTippers](http://www.reddit.com/r/BitTippers/
 
 [sentimental version](http://sentimentalversioning.org/) history:
 
-15 March 2015: v.Save prefs with a closure!
-14 March 2015: v.Good enough to show people
+* 15 March 2015: v.Save prefs with a closure!
+* 14 March 2015: v.Good enough to show people
