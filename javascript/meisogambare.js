@@ -1,13 +1,18 @@
 var clock;
+
+var meisoPrefs = MeisoPreferences();
+
 var reveal_duration = 2000;
 var hide_duration = 2000;
 var successBGColor = "#0B6138";
 var countingColor = "#232323";
 var reachedGoalTime = false;
 
+
 var clickedStartButton = function(e) {
 	reachedGoalTime = false;
 	changePageColor(countingColor);
+	meisoPrefs.setMeditationTime($('#countdown_minutes').val());	// save to local storage for next time
 	clock.setTime($('#countdown_minutes').val() * 60);
 	clock.setCountdown(true);
 	clock.start();
@@ -81,7 +86,10 @@ $(document).ready(function() {
 			}
 		}
 	});
-	clock.setTime($('#countdown_minutes').val() * 60);
+
+	// get the number of minutes from local storage
+	$('#countdown_minutes').val(meisoPrefs.getMeditationTime());
+	clock.setTime(meisoPrefs.getMeditationTime() * 60);
 
 	$('.start').click(clickedStartButton);
 
