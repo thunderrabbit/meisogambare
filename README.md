@@ -12,7 +12,7 @@ http://thunderrabbit.github.io/meisogambare/
 
 ## Credit
 
-Huge thanks to [flipclock.js](http://flipclockjs.com) for beautiful timer!
+Huge thanks to [flipclock.js](http://flipclockjs.com) for the beautiful timer!
 
 Thanks to Tec Studios for their [bell sound](http://www.freesound.org/people/tec%20studios/sounds/124742/).
 
@@ -26,5 +26,6 @@ And super gigantic thanks to [/r/BitTippers](http://www.reddit.com/r/BitTippers/
 
 [sentimental version](http://sentimentalversioning.org/) history:
 
-* 15 March 2015: v.Save prefs with a closure!
-* 14 March 2015: v.Good enough to show people
+* 05 May 2019: v.Larger text
+* 15 Mar 2015: v.Save prefs with a closure!
+* 14 Mar 2015: v.Good enough to show people
